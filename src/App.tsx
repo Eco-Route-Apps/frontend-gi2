@@ -19,41 +19,43 @@ function App() {
 
   const [global, setGlobal] = useRecoilState(globalState);
 
-    const router = createBrowserRouter( 
-        [
-            {
-                path:'/',
-                element: <Home />
+      const router = createBrowserRouter( 
+          [
+              {
+                  index: true,
+                  path:'/',
+                  element: <Home />
 
-            },
-            {
-                path:'/blogs',
-                element: <AllBlogs />
-            },
-            {
-                path:'/blog/:id',
-                element: <Blog />
-            },
-            {
-                path:'/login',
-                element: <Login />
-            },
-            {
-                path:'/admin',
-                element: <ProtectedRoute isAuthenticated={global.token}></ProtectedRoute>,
-                children: [
-                    {
-                        path: 'dashboard',
-                        element: <Admin />
-                    }
-                ]
-            },
-            {
-              path: '/*',
-              element: <NotFound />
-            }
-        ]
-    )
+              },
+              {
+                  path:'/blogs',
+                  element: <AllBlogs />
+              },
+              {
+                  path:'/blog/:id',
+                  element: <Blog />
+              },
+              {
+                  path:'/login',
+                  element: <Login />
+              },
+              {
+                  path:'/admin',
+                  element: <ProtectedRoute isAuthenticated={global.token}></ProtectedRoute>,
+                  children: [
+                      {
+                          index: true,
+                          path: 'dashboard',
+                          element: <Admin />
+                      }
+                  ]
+              },
+              {
+                path: '/*',
+                element: <NotFound />
+              }
+          ]
+      )
 
   return (
     <>
