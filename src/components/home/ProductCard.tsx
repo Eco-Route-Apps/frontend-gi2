@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
     .product-card-container{
@@ -30,6 +31,8 @@ const Container = styled.div`
         }
 `
 export const ProductCard = ({logo,desc,detail,preview}) => {
+    const navigate = useNavigate();
+
     return (
         <Container>
             <div className="product-card-container">
@@ -40,7 +43,9 @@ export const ProductCard = ({logo,desc,detail,preview}) => {
                     <div className="product-desc">
                 {desc}
                     </div>
-                    <button className="cta">Detail</button>
+                    <button className="cta" onClick={()=>{
+                        window.location.href = "https://www.instagram.com/ecoroute.apps/"
+                    }}>Detail</button>
                 </div>
                 <div>
                     <img src={preview} alt="" className="productPreview" />

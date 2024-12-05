@@ -125,17 +125,20 @@ export const Home = () => {
                 <h2 className="home-title">Welcome to Green 
                     Innovation Indonesia
                 </h2>
-
-                <span className="home-sec-title" >
-                We Build Solution to Earth
-                Global Warming Problems
+                <br />
+                <span className="home-sec-title">
+                    We drive sustainability through innovative SaaS solutions in Green Technology.
                 </span>
 
 <p className="home-desc">Join us on a journey toward a cleaner and greener future. Every mile
 we travel together, every step we take, we can make a difference.</p>
 
 <br />
-<button className="home-cta">Contact Us</button>
+<button className="home-cta" onClick={
+    ()=>{
+        window.location.href = "https://wa.me/+6285236944692"
+    }
+}>Contact Us</button>
                 </div>
 
                 <div style={{
@@ -152,34 +155,23 @@ we travel together, every step we take, we can make a difference.</p>
                 <div className="about-1">
                     <div className="about-item">
                         <img src={Sustain} alt="sustain" />
-                        <h3>Sustainable Products</h3>
+                        <h3>Expert Team</h3>
                         <p>
-                        Explore our carefully curated 
-selection of sustainable products, 
-each designed to reduce your 
-carbon footprint
+                            Our team consists of experts and professionals in the tech industry, dedicated to providing top-notch SaaS solutions. We leverage our extensive experience and knowledge to help businesses achieve their goals.
                         </p>
                     </div>
                     <div className="about-item">
                         <img src={Ecofriendly} alt="sustain" />
-                        <h3>Eco-Friendly Choices</h3>
+                        <h3>Innovative SaaS Solutions</h3>
                         <p>
-                        Make conscious choices with our 
-eco-friendly products, knowing 
-that your purchases promote ethical 
-sourcing and responsible 
-manufacturing practices.
+                        Our SaaS solutions are designed to be innovative with cutting-edge features that distruptive the industry. We are committed to providing you with the best tools to help you achieve your goals.
                         </p>
                     </div>
                     <div className="about-item">
                         <img src={High} alt="sustain" />
-                        <h3>High-Quality Selection</h3>
+                        <h3>High-Quality SaaS Solutions</h3>
                         <p>
-                        Invest in long-lasting and reliable 
-products that meet our stringent 
-quality standards, ensuring your 
-satisfaction and the longevity of 
-your purchases.
+                        We provide a comprehensive suite of high-quality SaaS solutions designed to meet your needs. Our platforms are scalable, and customizable, ensuring you get the best value for your investment.
                         </p>
                     </div>
                 </div>
@@ -218,10 +210,10 @@ your purchases.
                         })}
                     </div>
                 </div>
-                    <div className="review-nav">
+                    {/* <div className="review-nav">
                         <img src={ArrowBack} alt="arrow back" />
                         <img src={ArrowBack} alt="arrow back" />
-                    </div>
+                    </div> */}
             </section>
             
             

@@ -8,15 +8,13 @@ const Footer: React.FC = () => {
             <div className="footer-section">
                 <h3>Pages</h3>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Contact us</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About us</a></li>
+                    <li><a href="https://wa.me/+6285236944692">Contact us</a></li>
                 </ul>
                 <div className="social-icons">
-                    <a href="#"><Facebook></Facebook></a>
-                    <a href="#"><Instagram></Instagram></a>
-                    <a href="#"><LinkedIn></LinkedIn></a>
-                    <a href="#"><Twitter></Twitter></a>
+                    <a href="https://www.instagram.com/ecoroute.apps/"><Instagram></Instagram></a>
+                    <a href="https://www.linkedin.com/company/eco-route-indonesia/"><LinkedIn></LinkedIn></a>
                 </div>
 
                 <div className="footer-bottom">

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Container = styled.div`
 
     .card{
+        width:100%;
         background:white;
         border-radius:20px;
         display:flex;
@@ -55,7 +56,7 @@ export const BlogCard = ({hero, title, desc, url})=>{
                 <h2 className="title">{title}</h2>
                 <p className="desc">{desc}</p>
                 <button className="cta" onClick={()=>{
-                    navigate("blog/"+url)
+                    navigate("/blog/"+url)
                 }}>Read More</button>
             </div>
         </div>

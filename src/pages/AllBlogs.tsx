@@ -72,6 +72,7 @@ export const AllBlogs: React.FC = () => {
                 } />
                 <h1 className="blog-title">Blogs</h1>
             </div>
+                {loading && <p>Loading...</p>}
 
                 <div className="blog-body">
                     
