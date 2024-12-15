@@ -33,7 +33,6 @@ import Logo from '../../assets/logo.svg'
 // import ColorSchemeToggle from './ColorSchemeToggle';
 import { closeSidebar } from '../../common/utils';
 import { globalState } from '../../state/global/global.atom';
-import { useRecoilState } from 'recoil';
 import { userAtom } from '../../state/user/user.atom';
 
 function Toggler({
@@ -70,9 +69,57 @@ function Toggler({
   );
 }
 
-export default function Sidebar({selectedPage ,onSelected, setLogout}) {
 
-  const [user,setUser] = useRecoilState(userAtom)
+const sidebarItems = [
+  {
+    path: "/admin/dashboard",
+    icon: <Dashboard />,
+    label: "Dashboard"
+  },
+  {
+    path: "/admin/blog",
+    icon: <Description />,
+    label: "Blogs"
+  }, {
+    path: "/admin/kendaraan",
+    icon: <LocalShipping />,
+    label: "Kendaraan"
+  },
+  {
+    path: "/admin/driver",
+    icon: <Person3 />,
+    label: "Driver"
+  },
+  {
+    path: "/admin/pool",
+    icon: <LocalParking />,
+    label: "Pool"
+  }, {
+    path: "/admin/vehicle-type",
+    icon: <LocalShippingOutlined />,
+    label: "Jenis Kendaraan"
+  },
+  {
+    path: "/admin/device",
+    icon: <SettingsRemote />,
+    label: "DeviceId"
+  },
+  {
+    path: "/admin/fuel",
+    icon: <LocalGasStation />,
+    label: "Bahan Bakar"
+  },
+  {
+    path: "/admin/user",
+    icon: <Person />,
+    label: "User"
+  },
+];
+
+
+export default function Sidebar({ selectedPage, onSelected, setLogout }) {
+
+  const [user, setUser] = useRecoilState(userAtom)
 
   return (
     <Sheet
@@ -117,7 +164,7 @@ export default function Sidebar({selectedPage ,onSelected, setLogout}) {
           width: '100vw',
           height: '100vh',
           opacity: 'var(--SideNavigation-slideIn)',
-          backgroundColor: 'var(--joy-palette-background-backdrop)',
+          backgroundColor: 'var(--Primary-Green)',
           transition: 'opacity 0.4s',
           transform: {
             xs: 'translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1) + var(--SideNavigation-slideIn, 0) * var(--Sidebar-width, 0px)))',
@@ -126,14 +173,15 @@ export default function Sidebar({selectedPage ,onSelected, setLogout}) {
         }}
         onClick={() => closeSidebar()}
       />
+
       <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
         <img src={Logo} alt="logo" width="40" style={{
-            marginRight:"5px"
+          marginRight: "5px"
         }} />
         <Typography level="title-sm">Green Innovation Indonesia</Typography>
         {/* <ColorSchemeToggle sx={{ ml: 'auto' }} /> */}
       </Box>
-      <Input size="sm" startDecorator={<SearchRoundedIcon />} placeholder="Search" />
+      <Input color='success' size="sm" startDecorator={<SearchRoundedIcon />} placeholder="Search" />
       <Box
         sx={{
           minHeight: 0,
@@ -154,7 +202,19 @@ export default function Sidebar({selectedPage ,onSelected, setLogout}) {
             '--ListItem-radius': (theme) => theme.vars.radius.sm,
           }}
         >
-          <ListItem onClick={()=>{
+          {sidebarItems.map((item) => (
+            <ListItem onClick={() => {
+              onSelected(item.path)
+            }}>
+              <ListItemButton selected={(selectedPage === item.path) ? true : false}>
+                {item.icon}
+                <ListItemContent>
+                  <Typography level="title-sm">{item.label}</Typography>
+                </ListItemContent>
+              </ListItemButton>
+            </ListItem>
+          ))}
+          {/* <ListItem onClick={() => {
             onSelected("home")
           }}>
             <ListItemButton selected={(selectedPage === "home") ? true : false}>
@@ -165,16 +225,16 @@ export default function Sidebar({selectedPage ,onSelected, setLogout}) {
             </ListItemButton>
           </ListItem>
 
-          <ListItem onClick={()=>{
+          <ListItem onClick={() => {
             onSelected("blogs")
           }}>
-            <ListItemButton  selected={(selectedPage === "blogs") ? true : false} >
+            <ListItemButton selected={(selectedPage === "blogs") ? true : false} >
               <DashboardRoundedIcon />
               <ListItemContent>
                 <Typography level="title-sm">Blogs</Typography>
               </ListItemContent>
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
 
           {/* <ListItem>
             <ListItemButton
@@ -291,23 +351,106 @@ export default function Sidebar({selectedPage ,onSelected, setLogout}) {
         </List>
       </Box>
       <Divider />
-      <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+      <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', position: "sticky", bottom: 0 }}>
         <Avatar
           variant="outlined"
           size="sm"
           src={(user.profile_picture) ? user.profile_picture : "https://avatars.dicebear.com/api/human/joy-ui.svg"}
         />
         <Box sx={{ minWidth: 0, flex: 1 }}>
-          <Typography level="title-sm">{user.fullname}</Typography> 
+          <Typography level="title-sm">{user.fullname}</Typography>
           <Typography level="body-xs">{user.email}</Typography>
         </Box>
-        <IconButton size="sm" variant="plain" color="neutral" onClick={()=>{
+        <IconButton size="sm" variant="plain" color="neutral" onClick={() => {
           setLogout()
         }
         }>
-          <LogoutRoundedIcon/>
+          <LogoutRoundedIcon />
         </IconButton>
       </Box>
     </Sheet>
   );
 }
+
+
+import styled from "@emotion/styled";
+import { Book, CarCrashOutlined, CarCrashRounded, CarRental, CarRentalSharp, Dashboard, Description, DeviceHub, FireTruck, Home, LocalCarWash, LocalGasStation, LocalParking, LocalShipping, LocalShippingOutlined, Login, Person, Person3, Pool, SettingsRemote } from "@mui/icons-material";
+import { Link, useLocation } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { adminAtom } from "../../state/modal/admin.atom";
+
+
+// Styled Sidebar Component
+const SidebarContainer = styled.div`
+  width: 250px;
+  height: 100vh;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+`;
+
+const SidebarItem = styled(Link) <{ active: boolean }>`
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: ${props => props.active ? '#1976d2' : 'black'};
+  background-color: ${props => props.active ? '#e6f2ff' : 'transparent'};
+  border-radius: 5px;
+  margin-bottom: 10px;
+  
+  &:hover {
+    background-color: #e0e0e0;
+  }
+  
+  svg {
+    margin-right: 10px;
+  }
+`;
+
+
+// // Sidebar Component
+// export const Sidebar: React.FC = () => {
+//   const location = useLocation();
+//   const [adminState, setAdminState] = useRecoilState(adminAtom);
+
+//   const sidebarItems = [
+//     {
+//       path: "/admin/blog",
+//       icon: <Book />,
+//       label: "Blogs"
+//     },
+//     {
+//       path: "/admin/dashboard",
+//       icon: <Dashboard />,
+//       label: "Dashboard"
+//     },
+//   ];
+
+//   const handleLogout = () => {
+//     setAdminState({ ...adminState, isModalLogoutShowing: true });
+//   };
+
+//   return (
+//     <SidebarContainer>
+//       {sidebarItems.map((item) => (
+//         <SidebarItem
+//           key={item.path}
+//           to={item.path}
+//           active={location.pathname === item.path}
+//         >
+//           {item.icon}
+//           {item.label}
+//         </SidebarItem>
+//       ))}
+//       <SidebarItem
+//         as="button"
+//         onClick={handleLogout}
+//         active={false}
+//       >
+//         Logout
+//       </SidebarItem>
+//     </SidebarContainer>
+//   );
+// };

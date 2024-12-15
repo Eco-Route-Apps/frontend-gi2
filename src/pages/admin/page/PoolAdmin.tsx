@@ -1,0 +1,7 @@
+export const PoolAdmin = () => {
+    return (
+        <div>
+            <h1>Pool</h1>
+        </div>
+    )
+}

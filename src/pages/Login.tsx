@@ -25,7 +25,7 @@ const schema = yup
 export const Login = () => {
   const [global, setGlobal] = useRecoilState(globalState);
   const navigate = useNavigate();
-  const {error,loading, loginFetch } = useLogin();
+  const { error, loading, loginFetch } = useLogin();
 
   const {
     control,
@@ -78,7 +78,7 @@ export const Login = () => {
             bgcolor: "white",
           }}
         >
- 
+
           <Typography
             level="h4"
             fontWeight="bold"
@@ -88,14 +88,14 @@ export const Login = () => {
           >
             Login
           </Typography>
-          
+
           <Typography level="body2" textAlign="center" mb={1} sx={{ color: "#777" }}>
             Enter your credentials to access your account.
           </Typography>
 
-          {(error) ? <Alert severity="solid" color="danger" sx={{mb:1}}>{error}</Alert>
-      :<></>}
-      
+          {(error) ? <Alert severity="solid" color="danger" sx={{ mb: 1 }}>{error}</Alert>
+            : <></>}
+
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* Username Field */}
             <Controller
